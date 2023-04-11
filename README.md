@@ -15,7 +15,7 @@ Clone the project
 
 Go to the client folder
 ```bash
-    cd client
+  cd client
 ```
 
 Install dependencies
