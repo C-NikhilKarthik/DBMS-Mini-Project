@@ -43,7 +43,7 @@ function Navbar() {
         <img src={Color} alt="CNK Logo" className="h-20" />
         <ul className="flex items-center text-slate-300 text-sm">
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li className="mx-4 cursor-pointer">
             <Dropdown/>
@@ -55,7 +55,7 @@ function Navbar() {
             <a href="#contact">Contact</a>
           </li>
           <button className="mx-4 hover:bg-[#64ffdb24] transition-[background-color] duration-300 text-[#64FFDA] border-2 border-[#64FFDA] px-4 py-2 rounded-md text-sm font-semibold">
-            LogOut
+            LogIn
           </button>
         </ul>
       </nav>

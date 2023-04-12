@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import registrationclient from '../assets/registrationclient.jpg';
 import myBackgroundImage from "../assets/registration-bg.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -25,7 +26,7 @@ function RegistrationClient() {
       <Navbar />
       <div
         className="bg-cover bg-center h-full sm:h-screen w-screen flex items-center justify-center py-32 px-4"
-        style={{ backgroundImage: `url(${myBackgroundImage})` }}
+        style={{ backgroundImage: `url(${registrationclient})` }}
       >
         <div className="sm:w-2/3 w-full h-fit bg-[#050505] bg-opacity-[43%] backdrop-blur-md rounded-lg p-4">
           <h1 className="font-sans font-bold text-4xl text-center py-6 text-slate-200">
