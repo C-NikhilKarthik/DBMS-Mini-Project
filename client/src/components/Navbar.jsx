@@ -1,5 +1,6 @@
 import React from "react";
 import Color from "../assets/Color.png";
+import { Link } from "react-router-dom";
 
 function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = React.useState(null);
@@ -41,10 +42,10 @@ function Navbar() {
         <img src={Color} alt="CNK Logo" className="h-20" />
         <ul className="flex items-center text-slate-300 text-sm">
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <a href="#about">Home</a>
+            <Link to="/home">Home</Link>
           </li>
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <a href="#education">Registration</a>
+            <Link to="/registration">Registration</Link>
           </li>
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
             <a href="#project">Status</a>
