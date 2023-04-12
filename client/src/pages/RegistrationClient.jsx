@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import registrationclient from '../assets/registrationclient.jpg';
-import myBackgroundImage from "../assets/registration-bg.jpg";
+// import myBackgroundImage from "../assets/registration-bg.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import clientIcon from "../assets/registered.png";

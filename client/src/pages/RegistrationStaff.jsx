@@ -10,10 +10,10 @@ import { GiRank3 } from "react-icons/gi";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import office from "../assets/office.png";
 import map from "../assets/map.png";
-import edit from "../assets/edit.png";
+// import edit from "../assets/edit.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import calendarIcon from "../assets/calendar.png";
+// import calendarIcon from "../assets/calendar.png";
 function RegistrationStaff() {
 
   const [selectedDate, setSelectedDate] = useState(null);

@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import myBackgroundImage from "../assets/landingbg.jpg"
-
+import { Link } from 'react-router-dom';
 
 function Landing() {
     return (
@@ -15,9 +15,11 @@ function Landing() {
                     <h1 className='text-white text-2xl text-center pt-10'>Professional solutions for owners and investors in property management. </h1>
                     <h3 className='text-white text-xl text-center pt-8'>Customized assistance.</h3>
                     <div className="flex justify-center py-10">
-                        <button className="text-white text-lg bg-blue-400 rounded-full p-2">
-                            Get Started
-                        </button>
+                        <Link to='/home'>
+                            <button className="text-white text-lg bg-blue-400 rounded-full p-2">
+                                Get Started
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
