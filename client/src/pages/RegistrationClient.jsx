@@ -14,7 +14,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../assets/calendar.png";
 
-function Registration() {
+function RegistrationClient() {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -156,4 +156,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default RegistrationClient;

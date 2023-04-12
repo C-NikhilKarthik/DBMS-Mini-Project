@@ -1,6 +1,7 @@
 import React from "react";
 import Color from "../assets/Color.png";
 import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = React.useState(null);
@@ -44,8 +45,8 @@ function Navbar() {
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
             <Link to="/">Home</Link>
           </li>
-          <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <Link to="/registration">Registration</Link>
+          <li className="mx-4 cursor-pointer">
+            <Dropdown/>
           </li>
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
             <a href="#project">Status</a>
