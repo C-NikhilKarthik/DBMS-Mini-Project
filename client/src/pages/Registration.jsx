@@ -36,7 +36,7 @@ function Registration() {
               <div className="relative rounded-full border">
                 <input
                   type="text"
-                  className="w-full pointer-events-none bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                   placeholder="Client Number"
                 />
                 <img

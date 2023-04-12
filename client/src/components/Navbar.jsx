@@ -42,7 +42,7 @@ function Navbar() {
         <img src={Color} alt="CNK Logo" className="h-20" />
         <ul className="flex items-center text-slate-300 text-sm">
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
             <Link to="/registration">Registration</Link>
