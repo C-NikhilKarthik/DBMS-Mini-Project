@@ -33,29 +33,7 @@ const List = [
         Washrooms:"2 bathrooms",
         Rooms:"3 bedrooms",
         Price:"₹ 14,891",
-    },
-    {
-        img:"https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?cs=srgb&dl=pexels-thgusstavo-santana-2102587.jpg&fm=jpg",
-        Title:"2211 Summer Ridge Dr",
-        Area:"5000 Sq Ft.",
-        Washrooms:"2 bathrooms",
-        Rooms:"3 bedrooms",
-        Price:"₹ 14,891",
-    },    {
-        img:"https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?cs=srgb&dl=pexels-thgusstavo-santana-2102587.jpg&fm=jpg",
-        Title:"2211 Summer Ridge Dr",
-        Area:"5000 Sq Ft.",
-        Washrooms:"2 bathrooms",
-        Rooms:"3 bedrooms",
-        Price:"₹ 14,891",
-    },    {
-        img:"https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?cs=srgb&dl=pexels-thgusstavo-santana-2102587.jpg&fm=jpg",
-        Title:"2211 Summer Ridge Dr",
-        Area:"5000 Sq Ft.",
-        Washrooms:"2 bathrooms",
-        Rooms:"3 bedrooms",
-        Price:"₹ 14,891",
-    },
+    }
 ]
 function RecentListing() {
   return (
