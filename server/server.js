@@ -1,8 +1,8 @@
 const express=require('express')
 require('dotenv').config()
-// const {connectToDb,getDb}=require('./config/dbConn')
-const connectDb=require('./config/dbConn')
-//const mongoose=require('mongoose')
+
+const con=require('./config/dbConn')
+
 const {logger}=require('./middleware/logger')
 const {logEvents}=require('./middleware/logger')
 const errorHandler=require('./middleware/errorHandler')
@@ -13,66 +13,21 @@ const app=express()
 const path=require('path')
 const bodyParser = require('body-parser');
 
-const User=require('./models/UserModel');
-const Blog = require('./models/BlogModel');
+// const User=require('./models/UserModel');
+// const Blog = require('./models/BlogModel');
 
 app.use(logger)
 app.use(cors());
-// app.use(cors)
-// app.use(cors(corsOptions))
+
 app.use(express.urlencoded({extended:false}))//to be able to read data from the url or form which we send
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-connectDb()
-
 //for running with react app:
 app.use(express.static(path.join(__dirname,'build')))
 app.use('/',require('./routes/root'))
 
-//SingIn
-app.use('/signin',require('./routes/SignIn'))
-
-//SignUp
-app.use('/signup',require('./routes/SignUp'))
-
-//Friends
-app.use('/friends',require('./routes/Friends_list'))
-
-//Home
-app.use('/home',require('./routes/Home'))
-
-//PostBlog
-app.use('/postBlog',require('./routes/CreateBlog'))
-
-//PostBlogHTML
-app.use('/htmlBlog',require('./routes/CreateBlogHtml'))
-
-//Explore Page
-app.use('/explore',require('./routes/Explore'))
-
-//read more on blog
-app.use('/readmore',require('./routes/posts'))
-
-//Password Reset
-
-app.use('/sendpasswordlink',require('./routes/resetPass'))
-
-app.use('/forgotpassword/:id/:token',require('./routes/verifyUser'))
-
-app.use('/:id/:token',require('./routes/changePassword'))
-
-//search friends
-app.use('/searchFriends',require('./routes/searchFriends'));
-
-//add Friends
-app.use('/addFriends',require('./routes/AddFriend'));
-
-//remove Friends
-app.use('/removeFriends',require('./routes/RemoveFriends'));
 
 app.all('*', (req, res) => {
     res.status(404)
