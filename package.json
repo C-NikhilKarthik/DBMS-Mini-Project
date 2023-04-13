@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/C-NikhilKarthik/DBMS-Mini-Project/issues"
   },
-  "homepage": "https://github.com/C-NikhilKarthik/DBMS-Mini-Project#readme"
+  "homepage": "https://github.com/C-NikhilKarthik/DBMS-Mini-Project#readme",
+  "dependencies": {
+    "framer-motion": "^10.11.6",
+    "mysql": "^2.18.1"
+  }
 }
