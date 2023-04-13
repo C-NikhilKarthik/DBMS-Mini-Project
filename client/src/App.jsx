@@ -6,12 +6,14 @@ import RegistrationStaff from "./pages/RegistrationStaff";
 import RegistrationProperty from "./pages/RegistrationProperty";
 import RegistrationOwner from "./pages/RegistrationOwner";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/registration/client" element={<RegistrationClient />} />
         <Route path="/registration/owner" element={<RegistrationOwner />} />
         <Route
