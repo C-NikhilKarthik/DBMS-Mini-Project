@@ -3,9 +3,10 @@ const con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"avisql@123",
-    database:"dreamhome",
+    database:"dreamhome2",
     multipleStatements:"true"
 })
+
 
 // Check if the connection is established successfully
 con.connect((err) => {
@@ -14,6 +15,7 @@ con.connect((err) => {
       return;
     }
     console.log('Connected to MySQL database!');
+    
   });
   
 module.exports=con
