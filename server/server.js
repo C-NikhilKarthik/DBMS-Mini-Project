@@ -28,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'build')))
 app.use('/',require('./routes/root'))
 
+//client registration:
+app.use('/clientregistration',require('./routes/clientregistration'))
+
 
 app.all('*', (req, res) => {
     res.status(404)
