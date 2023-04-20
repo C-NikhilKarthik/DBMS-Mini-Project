@@ -16,12 +16,58 @@ import "react-datepicker/dist/react-datepicker.css";
 // import calendarIcon from "../assets/calendar.png";
 function RegistrationStaff() {
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [fullname,setfullname]=useState('')
+  const [position,setposition]=useState('')
+  const [staffnumber,setstaffnumber]=useState('')
+  const [salary,setsalary]=useState(0)
+  const [dob, setdob] = useState(null);
+  const [sex,setsex]=useState('')
+  const [branchno,setbranchno]=useState('')
+  const [supervisornum,setsupervisornum]=useState('')
+  const [managerstartdate, setmanagerstartdate] = useState(null);
+  const [managerbonus,setmanagerbonus]=useState(0)
   const [open, setOpen] = useState(false);
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setmanagerstartdate(date);
   };
+
+  const handleDobChange = (date) => {
+    setdob(date);
+  };
+
+  const handle_submit=async(e)=>{
+
+    const response=await fetch("/staffregistration",{
+      method:"POST",
+      body:JSON.stringify({
+        fullname:fullname,
+        position:position,
+        staffnumber:staffnumber,
+        salary:salary,
+        dob:dob,
+        sex:sex,
+        branchno:branchno,
+        supervisornum:supervisornum,
+        managerstartdate:managerstartdate,
+        managerbonus:managerbonus
+        
+      }),
+      headers:{ "Content-type": "application/json" }
+    })
+
+    const json=await response.json()
+
+    if(json.mssg==="FAILED")
+    {
+      window.alert("error in inserting values")
+    }
+    else{
+      window.alert("Client Registration Successfull")
+    }
+    
+
+  }
   return (
     <>
       <Navbar />
@@ -32,21 +78,26 @@ function RegistrationStaff() {
         <form>
           <motion.div layout transition={{ layout: { duration: 1, type: "spring" } }} className="sm:w-2/3 layout  w-full h-fit bg-[#050505] bg-opacity-[43%] backdrop-blur-md rounded-lg p-4">
             <h1 className="font-sans font-bold text-4xl text-center py-6 text-slate-200">
-              Dream House Client Registration
+              Dream House Staff Registration
             </h1>
             <div className="grid grid-rows-2 lg:grid-rows-none lg:grid-cols-2 gap-10 p-4">
               <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
                 <div className="relative flex items-center">
-                  <input placeholder="Full Name" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                  <input onChange={(e)=>setfullname(e.target.value)} placeholder="Full Name" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                   < BsPersonCircle className="absolute text-xl left-2" />
                 </div>
                 <div className="relative flex items-center">
-                  <input placeholder="Position" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                    <select onChange={(e)=>setposition(e.target.value)} className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-md bg-transparent appearance-none placeholder-black">
+                      <option value="None">Position</option>
+                      <option value="Manager">Manager</option>
+                      <option value="Supervisior">Supervisior</option>
+                      <option value="Assistant">Assistant</option>
+                    </select>
                   < GiRank3 className="absolute text-xl left-2" />
                 </div>
                 <div className="flex gap-4 w-full">
                   <div className="relative flex items-center">
-                    <input placeholder="Staff Number" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                    <input onChange={(e)=>setstaffnumber(e.target.value)} placeholder="Staff Number" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                     <img
                       src={clientIcon}
                       alt="Client Icon"
@@ -54,7 +105,7 @@ function RegistrationStaff() {
                     />
                   </div>
                   <div className="relative flex items-center">
-                    <input placeholder="Salary" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                    <input onChange={(e)=>setsalary(e.target.value)} placeholder="Salary" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                     < MdOutlineAttachMoney className="absolute text-xl left-2" />
                   </div>
                 </div>
@@ -62,8 +113,8 @@ function RegistrationStaff() {
                   <div className="relative w-full flex items-center">
                     < BsCalendar3 className="absolute text-xl z-[2] left-2" />
                     <DatePicker
-                      selected={selectedDate}
-                      onChange={handleDateChange}
+                      selected={dob}
+                      onChange={handleDobChange}
                       dateFormat="MM/dd/yyyy"
                       className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-md bg-transparent placeholder-black"
                       placeholderText="Date of Birth"
@@ -71,10 +122,10 @@ function RegistrationStaff() {
                   </div>
                   <div className="w-full relative flex items-center">
                     < BsPersonCheckFill className="absolute text-xl left-2" />
-                    <select className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-md bg-transparent appearance-none placeholder-black">
+                    <select onChange={(e)=>setsex(e.target.value)} className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-md bg-transparent appearance-none placeholder-black">
                       <option value="none">Sex</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
                     </select>
                   </div>
                 </div>
@@ -83,6 +134,7 @@ function RegistrationStaff() {
               <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
                 <div className="relative flex items-center">
                   <input
+                    onChange={(e)=>setbranchno(e.target.value)}
                     type="text"
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black"
                     placeholder="Branch Number"
@@ -107,7 +159,7 @@ function RegistrationStaff() {
                   />
                 </div>
                 <div className="relative flex items-center">
-                  <input placeholder="Telephone Numbers" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                  <input placeholder="Branch Telephone Numbers" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                   < BsTelephoneInboundFill className="absolute text-xl left-2" />
                 </div>
               </div>
@@ -125,21 +177,21 @@ function RegistrationStaff() {
                 {
                   open && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-4 flex-col lg:flex-row w-full">
                     <div className="relative w-full flex items-center">
-                      <input placeholder="Full Name" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                      <input onChange={(e)=>setsupervisornum(e.target.value)} placeholder="Supervisior Number" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                       < BsPersonCircle className="absolute text-xl left-2" />
                     </div>
                     <div className="relative w-full flex items-center">
                       < BsCalendar3 className="absolute text-xl z-[2] left-2" />
                       <DatePicker
-                        selected={selectedDate}
+                        selected={managerstartdate}
                         onChange={handleDateChange}
                         dateFormat="MM/dd/yyyy"
                         className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-md bg-transparent placeholder-black"
-                        placeholderText="Date of Birth"
+                        placeholderText="Manager Start Date"
                       />
                     </div>
-                    <div className="relative flex w-full items-center">
-                      <input placeholder="Salary" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                    <div className="relative fle  x w-full items-center">
+                      <input onChange={(e)=>setmanagerbonus(e.target.value)} placeholder="Manager Bonus" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                       < MdOutlineAttachMoney className="absolute text-xl left-2" />
                     </div>
                   </motion.div>)
@@ -148,12 +200,13 @@ function RegistrationStaff() {
               </motion.div>
             </div>
             <div className="flex justify-end p-2">
-              <Link
-                to="#"
+              <button
+                type="button"
+                onClick={handle_submit}
                 class="inline-block bg-gradient-to-br from-blue-300 to-blue-400 py-4 px-12 rounded-full text-lg text-purple-100 uppercase tracking-wide shadow-xs hover:shadow-2xl active:shadow-xl transform hover:-translate-y-1 active:translate-y-0 transition duration-200 "
               >
                 Submit
-              </Link>
+              </button>
             </div>
           </motion.div>
         </form>
