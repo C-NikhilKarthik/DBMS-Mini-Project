@@ -45,13 +45,13 @@ function Selections() {
           <p>Sale</p>
         </div>
       </div>
-        <div className='flex flex-col p-4 gap-4 w-full items-center justify-center'>
-          <div className='grid xl:grid-cols-6 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4'>
-            {inputs.map((input) => (<InputField text={input.text} key={input.id} type={input.type} />))}
-          </div>
-          <div className='flex justify-end w-full'>
+      <div className='flex flex-col p-4 gap-4 w-full items-center justify-center'>
+        <div className='grid xl:grid-cols-6 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4'>
+          {inputs.map((input) => (<InputField text={input.text} key={input.id} type={input.type} />))}
+        </div>
+        <div className='flex justify-end w-full'>
           <button type="button" className="rounded shadow bg-yellow-400 py-2 px-5">Search</button>
-          </div>
+        </div>
       </div>
     </div>
   )
