@@ -16,18 +16,18 @@ function ListingCard({ img, Title, area, rooms, washrooms, price }) {
       </div>
       <div className="flex flex-col gap-4 p-6">
         <div className="text-lg font-semibold">{Title}</div>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full flex-wrap gap-3">
           <div className="flex items-center gap-2">
             <HiOutlineArrowsExpand />
-            <div className="text-sm">{area}</div>
+            <div className="text-xs whitespace-nowrap">{area}</div>
           </div>
           <div className="flex items-center gap-2">
             <IoBed />
-            <div className="text-sm">{washrooms}</div>
+            <div className="text-xs whitespace-nowrap">{washrooms}</div>
           </div>
           <div className="flex items-center gap-2">
             <GiPerson />
-            <div className="text-sm">{rooms}</div>
+            <div className="text-xs whitespace-nowrap">{rooms}</div>
           </div>
         </div>
         <div className="h-[2px] w-full bg-slate-500"></div>
