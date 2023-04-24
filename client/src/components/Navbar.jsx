@@ -52,7 +52,7 @@ function Navbar() {
             <a href="#project">Status</a>
           </li>
           <li className="mx-4 cursor-pointer hover:text-[#64ffdb]">
-            <a href="#contact">Contact</a>
+            <Link to="/contact">Contact Us</Link>
           </li>
           <Link to="/login">
             <button className="mx-4 hover:bg-[#64ffdb24] transition-[background-color] duration-300 text-[#64FFDA] border-2 border-[#64FFDA] px-4 py-2 rounded-md text-sm font-semibold">

@@ -7,6 +7,7 @@ import RegistrationProperty from "./pages/RegistrationProperty";
 import RegistrationOwner from "./pages/RegistrationOwner";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import Contact from "./pages/Contact"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         />
         <Route path="/registration/staff" element={<RegistrationStaff />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
