@@ -14,11 +14,44 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../assets/calendar.png";
 function RegistrationOwner() {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [ownernumber,setownernumber]=useState('')
+    const [name,setname]=useState('')
+    const [telephonenumber,settelephonenumber]=useState('')
+    const [typeofbusiness,settypeofbusiness]=useState('')
+    const [streetaddress,setstreetaddress]=useState('')
+    const [city,setcity]=useState('')
+    const [postalcode,setpostalcode]=useState('')
+    const [contactname,setcontactname]=useState('')
 
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
-    };
+    const handlesubmit =async(e)=>{
+      console.log("pressed")
+      const response=await fetch("/ownerregistration",{
+        method:"POST",
+        body:JSON.stringify({
+          ownernumber:ownernumber,
+          name:name,
+          telephonenumber:telephonenumber,
+          typeofbusiness:typeofbusiness,
+          streetaddress:streetaddress,
+          city:city,
+          postalcode:postalcode,
+          contactname:contactname,
+        }),
+        headers:{ "Content-type": "application/json" }
+      })
+  
+      const json=await response.json()
+  
+      if(json.mssg==="FAILED")
+      {
+        window.alert("error in inserting values")
+      }
+      else{
+        window.alert("Owner Registration Successful")
+      }
+      
+    }
+
     return (
       <>
         <Navbar />
@@ -35,8 +68,9 @@ function RegistrationOwner() {
                 <div className="relative rounded-full border">
                   <input
                     type="text"
+                    onChange={(e)=>setownernumber(e.target.value)}
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                    placeholder="Client Number"
+                    placeholder="Owner Number"
                   />
                   <img
                     src={clientIcon}
@@ -48,6 +82,7 @@ function RegistrationOwner() {
                 <div className="relative rounded-full border">
                   <input
                     type="text"
+                    onChange={(e)=>setname(e.target.value)}
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                     placeholder="Name"
                   />
@@ -64,10 +99,13 @@ function RegistrationOwner() {
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <img src={clientType} alt="Client Icon" className="h-6 w-6" />
                   </div>
-                  <select className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
-                    <option value="sale">Sale</option>
-                    <option value="rent">Rent</option>
-                  </select>
+                  <input
+                    type="text"
+                    onChange={(e)=>settelephonenumber(e.target.value)}
+                    className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                    placeholder="Telephone Number"
+                  />
+                  
                 </div>
   
                 <div className="relative rounded-full border">
@@ -75,10 +113,10 @@ function RegistrationOwner() {
                     <img src={money} alt="Money Icon" className="h-6 w-6" />
                   </div>
                   <input
-                    type="number"
+                    type="text"
+                    onChange={(e)=>settypeofbusiness(e.target.value)}
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                    placeholder="Max Rent"
-                    pattern="[0-9]*"
+                    placeholder="Type of Business"
                   />
                 </div>
               </div>
@@ -87,8 +125,9 @@ function RegistrationOwner() {
                 <div className="relative rounded-full border">
                   <input
                     type="text"
+                    onChange={(e)=>setstreetaddress(e.target.value)}
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                    placeholder="Branch Number"
+                    placeholder="Street Address"
                   />
                   <img
                     src={office}
@@ -100,8 +139,23 @@ function RegistrationOwner() {
                 <div className="relative rounded-full border">
                   <input
                     type="text"
+                    onChange={(e)=>setcity(e.target.value)}
                     className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                    placeholder="Branch Address"
+                    placeholder="City"
+                  />
+                  <img
+                    src={map}
+                    alt="map Icon"
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                  />
+                </div>
+
+                <div className="relative rounded-full border">
+                  <input
+                    type="text"
+                    onChange={(e)=>setpostalcode(e.target.value)}
+                    className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                    placeholder="Postal Code"
                   />
                   <img
                     src={map}
@@ -116,38 +170,25 @@ function RegistrationOwner() {
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <img src={edit} alt="edit Icon" className="h-6 w-6" />
                   </div>
-                  <select className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
-                    <option value="manager">Manager</option>
-                    <option value="supervisor">Supervisor</option>
-                    <option value="assistsnt">Assistant</option>
-                  </select>
-                </div>
-  
-                <div className="relative rounded-full border">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <img
-                      src={calendarIcon}
-                      alt="Calendar Icon"
-                      className="h-6 w-6 z-[2]"
-                    />
-                  </div>
-                  <DatePicker
-                    selected={selectedDate}
-                    onChange={handleDateChange}
-                    dateFormat="MM/dd/yyyy"
-                    className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-full bg-transparent placeholder-black"
-                    placeholderText="Select Date"
+                  <input
+                    type="text"
+                    onChange={(e)=>setcontactname(e.target.value)}
+                    className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                    placeholder="Contact Name"
                   />
+                  
                 </div>
+
               </div>
             </div>
             <div className="flex justify-end p-2">
-              <Link
-                to="#"
+              <button
+                type="submit"
+                onClick={handlesubmit}
                 class="inline-block bg-gradient-to-br from-blue-300 to-blue-400 py-4 px-12 rounded-full text-lg text-purple-100 uppercase tracking-wide shadow-xs hover:shadow-2xl active:shadow-xl transform hover:-translate-y-1 active:translate-y-0 transition duration-200 "
               >
                 Submit
-              </Link>
+              </button>
             </div>
           </div>
         </div>

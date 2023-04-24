@@ -14,11 +14,44 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../assets/calendar.png";
 function RegistrationProperty() {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [propertynum,setpropertynum]=useState('')
+  const [type,settype]=useState('')
+  const [rooms,setrooms]=useState(0)
+  const [rent,setrent]=useState(0)
+  const [ownerid,setownerid]=useState('')
+  const [streetaddress,setstreetaddress]=useState('')
+  const [city,setcity]=useState('')
+  const [postalcode,setpostalcode]=useState(0)
+  const [managedby,setmanagedby]=useState('')
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const handlesubmit = async(e)=>{
+    const response=await fetch("/propertyregistration",{
+      method:"POST",
+      body:JSON.stringify({
+        propertynum:propertynum,
+        type:type,
+        rooms:rooms,
+        rent:rent,
+        ownerid:ownerid,
+        streetaddress:streetaddress,
+        city:city,
+        postalcode:postalcode,
+        managedby:managedby
+      }),
+      headers:{ "Content-type": "application/json" }
+    })
+
+    const json=await response.json()
+
+    if(json.mssg==="FAILED")
+    {
+      window.alert("error in inserting values")
+    }
+    else{
+      window.alert("Property Registration Successful")
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -28,15 +61,16 @@ function RegistrationProperty() {
       >
         <div className="sm:w-2/3 w-full h-fit bg-[#050505] bg-opacity-[43%] backdrop-blur-md rounded-lg p-4">
           <h1 className="font-sans font-bold text-4xl text-center py-6 text-slate-200">
-            Dream House Client Registration
+            Dream Home Property Registration
           </h1>
           <div className="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-2 gap-10 p-4">
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
               <div className="relative rounded-full border">
                 <input
                   type="text"
+                  onChange={(e)=>setpropertynum(e.target.value)}
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Client Number"
+                  placeholder="Property Number"
                 />
                 <img
                   src={clientIcon}
@@ -46,11 +80,12 @@ function RegistrationProperty() {
               </div>
 
               <div className="relative rounded-full border">
-                <input
-                  type="text"
-                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Name"
-                />
+                <select onChange={(e)=>settype(e.target.value)} className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
+                  <option value="None">Type</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="House">House</option>
+                  <option value="Condo">Condo</option>
+                </select>
                 <img
                   src={NameIcon}
                   alt="Name Icon"
@@ -66,10 +101,12 @@ function RegistrationProperty() {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <img src={clientType} alt="Client Icon" className="h-6 w-6" />
                 </div>
-                <select className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
-                  <option value="sale">Sale</option>
-                  <option value="rent">Rent</option>
-                </select>
+                <input
+                  type="text"
+                  onChange={(e)=>setrooms(e.target.value)}
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  placeholder="Rooms"
+                />
               </div>
 
               <div className="relative rounded-full border">
@@ -78,8 +115,9 @@ function RegistrationProperty() {
                 </div>
                 <input
                   type="number"
+                  onChange={(e)=>setrent(e.target.value)}
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Max Rent"
+                  placeholder="Rent"
                   pattern="[0-9]*"
                 />
               </div>
@@ -89,8 +127,9 @@ function RegistrationProperty() {
               <div className="relative rounded-full border">
                 <input
                   type="text"
+                  onChange={(e)=>setownerid(e.target.value)}
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Branch Number"
+                  placeholder="Owner ID"
                 />
                 <img
                   src={office}
@@ -102,8 +141,37 @@ function RegistrationProperty() {
               <div className="relative rounded-full border">
                 <input
                   type="text"
+                  onChange={(e)=>setstreetaddress(e.target.value)}
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Branch Address"
+                  placeholder="Street Address"
+                />
+                <img
+                  src={map}
+                  alt="map Icon"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                />
+              </div>
+
+              <div className="relative rounded-full border">
+                <input
+                  type="text"
+                  onChange={(e)=>setcity(e.target.value)}
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  placeholder="City"
+                />
+                <img
+                  src={map}
+                  alt="map Icon"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                />
+              </div>
+
+              <div className="relative rounded-full border">
+                <input
+                  type="text"
+                  onChange={(e)=>setpostalcode(e.target.value)}
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  placeholder="Postal Code"
                 />
                 <img
                   src={map}
@@ -118,40 +186,29 @@ function RegistrationProperty() {
 
               <div className="relative rounded-full border">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <img src={edit} alt="edit Icon" className="h-6 w-6" />
-                </div>
-                <select className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
-                  <option value="manager">Manager</option>
-                  <option value="supervisor">Supervisor</option>
-                  <option value="assistsnt">Assistant</option>
-                </select>
-              </div>
-
-              <div className="relative rounded-full border">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <img
-                    src={calendarIcon}
+                    src={NameIcon}
                     alt="Calendar Icon"
                     className="h-6 w-6 z-[2]"
                   />
                 </div>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="MM/dd/yyyy"
-                  className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-full bg-transparent placeholder-black"
-                  placeholderText="Select Date"
+                <input
+                  type="text"
+                  onChange={(e)=>setmanagedby(e.target.value)}
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  placeholder="Managed by"
                 />
               </div>
             </div>
           </div>
           <div className="flex justify-end p-2">
-            <Link
-              to="#"
+            <button
+              type="button"
+              onClick={handlesubmit}
               class="inline-block bg-gradient-to-br from-blue-300 to-blue-400 py-4 px-12 rounded-full text-lg text-purple-100 uppercase tracking-wide shadow-xs hover:shadow-2xl active:shadow-xl transform hover:-translate-y-1 active:translate-y-0 transition duration-200 "
             >
               Submit
-            </Link>
+            </button>
           </div>
         </div>
       </div>
