@@ -34,6 +34,12 @@ app.use('/clientregistration',require('./routes/clientregistration'))
 //staff registration:
 app.use('/staffregistration',require('./routes/staffregistration'))
 
+//property registration:
+app.use('/propertyregistration',require('./routes/propertyregistration'))
+
+//owner registration:
+app.use('/ownerregistration',require('./routes/ownerregistration'))
+
 
 app.all('*', (req, res) => {
     res.status(404)

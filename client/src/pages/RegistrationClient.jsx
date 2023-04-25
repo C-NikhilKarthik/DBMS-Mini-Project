@@ -49,7 +49,7 @@ function RegistrationClient() {
       window.alert("error in inserting values")
     }
     else{
-      window.alert("Client Registration Successfull")
+      window.alert("Client Registration Successful")
     }
 
   }
