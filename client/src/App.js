@@ -9,6 +9,10 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact"
 import Status from "./pages/Status";
+import Stafflisting from "./pages/Stafflisting";
+import Propertylisting from "./pages/Propertylisting";
+import Viewreport from "./pages/Viewreport";
+import Viewrent from "./pages/Viewrent";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
         <Route path="/registration/staff" element={<RegistrationStaff />} />
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/status/stafflisting" element={<Stafflisting />} />
+        <Route path="/status/propertylisting" element={<Propertylisting />} />
+        <Route path="/status/viewreport" element={< Viewreport/>} />
+        <Route path="/status/viewrent" element={< Viewrent/>} />
       </Routes>
     </Router>
   );
