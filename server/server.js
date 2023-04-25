@@ -39,7 +39,7 @@ app.use('/propertyregistration',require('./routes/propertyregistration'))
 
 //owner registration:
 app.use('/ownerregistration',require('./routes/ownerregistration'))
-
+app.use('/getbranches',require('./routes/getbranches'))
 
 app.all('*', (req, res) => {
     res.status(404)
