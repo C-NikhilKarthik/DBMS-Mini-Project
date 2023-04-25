@@ -8,6 +8,7 @@ import RegistrationOwner from "./pages/RegistrationOwner";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact"
+import Status from "./pages/Status";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           path="/registration/property"
           element={<RegistrationProperty />}
         />
+        <Route path="/status" element={<Status/>}/>
         <Route path="/registration/staff" element={<RegistrationStaff />} />
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />

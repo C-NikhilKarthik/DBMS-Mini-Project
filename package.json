@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/C-NikhilKarthik/DBMS-Mini-Project#readme",
   "dependencies": {
-    "framer-motion": "^10.11.6",
+    "framer-motion": "^10.12.4",
     "mysql": "^2.18.1"
   }
 }

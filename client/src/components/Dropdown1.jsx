@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Dropdown = () => {
+const Dropdown1 = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleMenuToggle = () => {
@@ -14,33 +14,21 @@ const Dropdown = () => {
         className="py-2 flex items-center text-gray-300 hover:text-[#64ffdb]"
         onClick={handleMenuToggle}
       >
-        Registration
+        Listings
       </button>
       {showMenu && (
         <div className="absolute z-50 mt-2 py-2 w-48 bg-white  rounded-md shadow-lg">
           <Link
-            to="/registration/client"
+            to="/listing/property"
             className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
           >
-            Client Registration
+            Property Listing
           </Link>
           <Link
-            to="/registration/owner"
+            to="/listing/staff"
             className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
           >
-            Owner Registration
-          </Link>
-          <Link
-            to="/registration/property"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-          >
-            Property Registration
-          </Link>
-          <Link
-            to="/registration/staff"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-          >
-            Staff Registration
+            Staff Listing
           </Link>
         </div>
       )}
@@ -48,4 +36,4 @@ const Dropdown = () => {
   );
 };
 
-export default Dropdown;
+export default Dropdown1;
