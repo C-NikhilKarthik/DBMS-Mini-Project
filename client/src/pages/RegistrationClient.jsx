@@ -1,6 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import registrationclient from '../assets/registrationclient.jpg';
+import { useState, useEffect } from "react";
+import registrationclient from "../assets/registrationclient.jpg";
 // import myBackgroundImage from "../assets/registration-bg.jpg";
 import Navbar from "../components/Navbar";
 import clientIcon from "../assets/registered.png";
@@ -16,18 +16,18 @@ import calendarIcon from "../assets/calendar.png";
 
 function RegistrationClient() {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [clientnum,setClientNum]=useState(null)
-  const [clientName,setClientName]=useState('')
-  const [clientReqType,setClientReqType]=useState('none')
-  const [clientMaxRent,setClientMaxRent]=useState(null)
-  const [clientBranchno,setClientBranchno]=useState('')
-  const [clientStaffReg,setClientStaffReg]=useState('')
+  const [clientnum, setClientNum] = useState(null);
+  const [clientName, setClientName] = useState("");
+  const [clientReqType, setClientReqType] = useState("none");
+  const [clientMaxRent, setClientMaxRent] = useState(null);
+  const [clientBranchno, setClientBranchno] = useState("");
+  const [clientStaffReg, setClientStaffReg] = useState("");
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const handlesubmit=async(e)=>{
+  const handlesubmit = async (e) => {
     const response = await fetch("/clientregistration", {
       method: "POST",
       body: JSON.stringify({
@@ -37,22 +37,37 @@ function RegistrationClient() {
         clientReqType,
         clientMaxRent,
         clientBranchno,
-        clientStaffReg
+        clientStaffReg,
       }),
       headers: { "Content-type": "application/json" },
     });
 
     const json = await response.json();
-    
-    if(json.mssg==="FAILED")
-    {
-      window.alert("error in inserting values")
-    }
-    else{
-      window.alert("Client Registration Successful")
-    }
 
-  }
+    if (json.mssg === "FAILED") {
+      window.alert("error in inserting values");
+    } else {
+      window.alert("Client Registration Successful");
+    }
+  };
+
+  const [branches, setBranches] = useState([]);
+  const [selectedBranch, setSelectedBranch] = useState(null);
+
+  useEffect(() => {
+    const fetchBranches = async () => {
+      const response = await fetch("/getbranches");
+      const data = await response.json();
+      setBranches(data);
+    };
+
+    fetchBranches();
+  }, []);
+
+  const handleBranchChange = (event) => {
+    setSelectedBranch(event.target.value);
+  };
+
   return (
     <>
       <Navbar />
@@ -71,7 +86,7 @@ function RegistrationClient() {
                   type="text"
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                   placeholder="Client Number"
-                  onChange={(e)=>setClientNum(e.target.value)}
+                  onChange={(e) => setClientNum(e.target.value)}
                 />
                 <img
                   src={clientIcon}
@@ -85,7 +100,7 @@ function RegistrationClient() {
                   type="text"
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                   placeholder="Name"
-                  onChange={(e)=>setClientName(e.target.value)}
+                  onChange={(e) => setClientName(e.target.value)}
                 />
                 <img
                   src={NameIcon}
@@ -94,13 +109,18 @@ function RegistrationClient() {
                 />
               </div>
 
-              <h3 className="text-white text-lg underline">Property Requirements</h3>
+              <h3 className="text-white text-lg underline">
+                Property Requirements
+              </h3>
 
               <div className="relative rounded-full border">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <img src={clientType} alt="Client Icon" className="h-6 w-6" />
                 </div>
-                <select onChange={(e)=>setClientReqType(e.target.value)} className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black">
+                <select
+                  onChange={(e) => setClientReqType(e.target.value)}
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                >
                   <option value="Apartment">Apartment</option>
                   <option value="House">House</option>
                   <option value="Condo">Condo</option>
@@ -116,7 +136,7 @@ function RegistrationClient() {
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                   placeholder="Max Rent"
                   pattern="[0-9]*"
-                  onChange={(e)=>setClientMaxRent(e.target.value)}
+                  onChange={(e) => setClientMaxRent(e.target.value)}
                 />
               </div>
             </div>
@@ -127,7 +147,7 @@ function RegistrationClient() {
                   type="text"
                   className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                   placeholder="Branch Number"
-                  onChange={(e)=>setClientBranchno(e.target.value)}
+                  onChange={(e) => setClientBranchno(e.target.value)}
                 />
                 <img
                   src={office}
@@ -137,11 +157,21 @@ function RegistrationClient() {
               </div>
 
               <div className="relative rounded-full border">
-                <input
-                  type="text"
-                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Branch Address"
-                />
+                <select
+                  id="branch"
+                  name="branch"
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                  value={selectedBranch}
+                  onChange={handleBranchChange}
+                >
+                  <option value="">Select branch</option>
+                  {branches.map((branch) => (
+                    <option key={branch.branchNo} value={branch.branchNo}>
+                  {branch.streetAddress},{branch.city}
+                    </option>
+                  ))}
+                </select>
+
                 <img
                   src={map}
                   alt="map Icon"
@@ -149,19 +179,20 @@ function RegistrationClient() {
                 />
               </div>
 
-              <h3 className="text-white text-lg underline">Registration Details</h3>
+              <h3 className="text-white text-lg underline">
+                Registration Details
+              </h3>
 
               <div className="relative rounded-full border">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <img src={edit} alt="edit Icon" className="h-6 w-6" />
                 </div>
-                <input 
-                type="text"
-                placeholder="Enter Staff Number"
-                onChange={(e)=>setClientStaffReg(e.target.value)} 
-                className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"/>
-                  
-                
+                <input
+                  type="text"
+                  placeholder="Enter Staff Number"
+                  onChange={(e) => setClientStaffReg(e.target.value)}
+                  className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                />
               </div>
 
               <div className="relative rounded-full border">

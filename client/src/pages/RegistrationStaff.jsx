@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import myBackgroundImage from "../assets/registration-bg.jpg";
 import { motion } from 'framer-motion'
 import { Link } from "react-router-dom";
@@ -63,11 +63,30 @@ function RegistrationStaff() {
       window.alert("error in inserting values")
     }
     else{
-      window.alert("Client Registration Successful")
+      window.alert("Staff Registration Successful")
     }
     
 
+
+
   }
+
+  const [branches, setBranches] = useState([]);
+  const [selectedBranch, setSelectedBranch] = useState(null);
+
+  useEffect(() => {
+    const fetchBranches = async () => {
+      const response = await fetch("/getbranches");
+      const data = await response.json();
+      setBranches(data);
+    };
+
+    fetchBranches();
+  }, []);
+
+  const handleBranchChange = (event) => {
+    setSelectedBranch(event.target.value);
+  };
   return (
     <>
       <Navbar />
@@ -147,11 +166,23 @@ function RegistrationStaff() {
                 </div>
 
                 <div className="relative flex items-center">
-                  <input
-                    type="text"
-                    className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black"
-                    placeholder="Branch Address"
-                  />
+
+                <select
+                  id="branch"
+                  name="branch"
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                  value={selectedBranch}
+                  onChange={handleBranchChange}
+                >
+                  <option value="">Select branch</option>
+                  {branches.map((branch) => (
+                    <option key={branch.branchNo} value={branch.branchNo}>
+                      {branch.streetAddress},{branch.city}
+                    </option>
+                  ))}
+                </select>
+
+
                   <img
                     src={map}
                     alt="map Icon"
