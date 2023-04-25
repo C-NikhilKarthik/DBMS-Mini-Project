@@ -15,7 +15,7 @@ const reg =async (req, res) => {
   const contact_fname= contact_nameArr[0];
   const contact_lname = contact_nameArr[contact_nameArr.length - 1];
   
-    con.query(`insert into Owner values ('${ownernumber}','${lname}',${fname},
+    con.query(`insert into Owner values ('${ownernumber}','${lname}','${fname}',
     '${streetaddress}','${city}',${postalcode},'${telephonenumber}','${typeofbusiness}','${contact_lname}','${contact_fname}')`,(error,result,fields)=>{
       if(error)
       {
