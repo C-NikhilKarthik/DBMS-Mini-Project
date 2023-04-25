@@ -17,7 +17,7 @@ function Contact() {
         <>
             <Navbar />
 
-            <div className="flex flex-col items-center justify-center mt-12 md:mt-36">
+            <div className="flex flex-col items-center px-4 justify-center mt-12 md:mt-36">
                 <h1 className="text-3xl font-bold mb-4 underline">Search For Branch</h1>
                 <div className="w-full max-w-sm my-4">
                     <form onSubmit={handleSubmit} className="flex">
@@ -41,14 +41,14 @@ function Contact() {
                 <hr className="my-10 w-full " style={{ borderTopWidth: "2px", borderColor: "black" }} />
 
                 <div className="grid gap-4 md:grid-cols-3 w-full mt-10">
-                    <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer">
+                    <div className="bg-slate-200 rounded-lg shadow-lg overflow-hidden cursor-pointer">
                         <div className="p-4">
                             <h2 className="text-xl font-bold mb-2">Address</h2>
                             <p className="text-gray-700">123, Main Road, Vidyanagar, Hubli, Karnataka 580031, India.</p>
                         </div>
                     </div>
 
-                    <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer">
+                    <div className="bg-slate-200 rounded-lg shadow-lg overflow-hidden cursor-pointer">
                         <div className="p-4">
                             <h2 className="text-xl font-bold mb-2">Contact</h2>
                             <p className="text-gray-700">+91 98765 43210</p>
@@ -56,10 +56,10 @@ function Contact() {
                         </div>
                     </div>
 
-                    <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer">
+                    <div className="bg-slate-200 rounded-lg shadow-lg overflow-hidden cursor-pointer">
                         <div className="p-4">
                             <h2 className="text-xl font-bold mb-2">FAQ</h2>
-                            <p className="text-gray-700"><a href='/'>Read More</a></p>
+                            <p className="text-gray-700"><a href='/faq'>Read More</a></p>
                         </div>
                     </div>
                 </div>
