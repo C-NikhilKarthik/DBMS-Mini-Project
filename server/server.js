@@ -40,6 +40,9 @@ app.use('/propertyregistration',require('./routes/propertyregistration'))
 //owner registration:
 app.use('/ownerregistration',require('./routes/ownerregistration'))
 
+//lease registration:
+app.use('/leaseregistration',require('./routes/leaseregistration'))
+
 
 app.all('*', (req, res) => {
     res.status(404)
