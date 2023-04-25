@@ -44,6 +44,9 @@ app.use('/getStaffInfo',require('./routes/getStaffInfo'))
 
 app.use('/getPropertyInfo',require('./routes/getPropertyInfo'))
 
+//lease registration:
+app.use('/leaseregistration',require('./routes/leaseregistration'))
+
 
 app.all('*', (req, res) => {
     res.status(404)
