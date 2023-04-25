@@ -4,15 +4,18 @@ const con=require('../config/dbConn')
 const reg =async (req, res) => {
   const {selectedDate,clientnum,clientName,clientReqType,clientMaxRent,clientBranchno,clientStaffReg}=req.body
   console.log(req.body)
+
+  const nameArr = req.body.clientName.split(" ");
+  const fname= nameArr[0];
+  const lname = nameArr[nameArr.length - 1];
   const dateObj = new Date(selectedDate);
   //const mysqlDate = dateObj.toISOString().slice(0, 19).replace('T', ' ');
   const mysqlDate = dateObj.toISOString().slice(0, 10);
   //console.log(mysqlDate)
 
   
-    con.query(`insert into clients values ('${clientnum}','john','${clientName}',
-    ${clientMaxRent},'${clientBranchno}','${clientStaffReg}','${mysqlDate}');
-    insert into clientrequirement values('${clientnum}','${clientReqType}')`,(error,result,fields)=>{
+    con.query(`insert into clients values ('${clientnum}','${lname}','${fname}','${clientReqType}',
+    ${clientMaxRent},'${clientBranchno}','${clientStaffReg}','${mysqlDate}');`,(error,result,fields)=>{
       if(error)
       {
         console.log(error)
@@ -24,4 +27,6 @@ const reg =async (req, res) => {
     })
 };
 
-module.exports = { reg };
+
+
+module.exports = {reg};

@@ -20,10 +20,10 @@ const reg =async (req, res) => {
     else{
         const dateObj2 = new Date(req.body.managerstartdate);
         const mysqlDate2 = dateObj2.toISOString().slice(0, 10);
-        con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,managerStartDate,managerBonus,branchNo) 
+        con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,managerStartDate,managerBonus) 
         values('${req.body.staffnumber}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${mysqlDate2}',
-        ${req.body.managerbonus},'${req.body.branchno}');
+        ${req.body.managerbonus});
         insert into branchManagers values('${req.body.branchno}','${req.body.staffnumber}') `,(error,result,fields)=>{
             if(error)
             {
@@ -37,10 +37,10 @@ const reg =async (req, res) => {
     }
 }
 else{
-    con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,supervisorNumber,branchNo) 
+    con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,supervisorNumber) 
     values('${req.body.staffnumber}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}}','${req.body.position}',${req.body.salary},'${req.body.supervisornum}'
-        ,'${req.body.branchno}')`,(error,result,fields)=>{
+        )`,(error,result,fields)=>{
             if(error)
             {
                 console.log(error)

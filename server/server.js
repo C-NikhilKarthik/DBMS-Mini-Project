@@ -39,6 +39,10 @@ app.use('/propertyregistration',require('./routes/propertyregistration'))
 
 //owner registration:
 app.use('/ownerregistration',require('./routes/ownerregistration'))
+app.use('/getbranches',require('./routes/getbranches'))
+app.use('/getStaffInfo',require('./routes/getStaffInfo'))
+
+app.use('/getPropertyInfo',require('./routes/getPropertyInfo'))
 
 //lease registration:
 app.use('/leaseregistration',require('./routes/leaseregistration'))
