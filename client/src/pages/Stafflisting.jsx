@@ -19,9 +19,12 @@ function Stafflisting() {
       fetchstaff();
     }, []);
 
+
   return (
     <div className='w-full flex items-center  pt-28 px-4 flex-col gap-8 bg-[url("https://wallpaperaccess.com/full/1126753.jpg")] h-screen bg-cover bg-scroll bg-center'>
                 <Navbar />
+
+
             <div className='flex w-full h-5/6 md:w-5/6 xl:w-2/3 flex-col bg-[#08192ea0] backdrop-blur-md rounded mt-8'>
                 <div className='flex p-4 pl-8 text-slate-200 border-b-[1px] border-slate-500'>Staff Listing</div>
                 <div className='h-[20rem] gap-6 w-full flex flex-col'>
@@ -56,8 +59,8 @@ function Stafflisting() {
 
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Stafflisting
