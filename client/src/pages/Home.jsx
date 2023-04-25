@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
 import Selections from "../components/Selections";
 import RecentListing from "../components/RecentListing";
+import Footer from "../components/Footer";
 
 const imgs = [
   {
@@ -28,6 +29,7 @@ function Home() {
       <Carousel img={imgs}/>
       <Selections/>
       <RecentListing/>
+      <Footer/>
     </div>
   );
 }
