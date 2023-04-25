@@ -1,8 +1,24 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import InputField from '../components/InputField'
+import {useState,useEffect} from 'react'
 
-function Stafflisting({data}) {
+function Stafflisting() {
+
+
+    const [data, setdata] = useState([]);
+
+  
+    useEffect(() => {
+      const fetchstaff = async () => {
+        const response = await fetch("/getStaffinfo");
+        const data = await response.json();
+        setdata(data);
+      };
+  
+      fetchstaff();
+    }, []);
+
   return (
     <div className='w-full flex items-center  pt-28 px-4 flex-col gap-8 bg-[url("https://wallpaperaccess.com/full/1126753.jpg")] h-screen bg-cover bg-scroll bg-center'>
                 <Navbar />
@@ -29,9 +45,9 @@ function Stafflisting({data}) {
 
                             ) : (data.map((item) => (
                                 <tr>
-                                    <td>item[0]</td>
-                                    <td>item[1]</td>
-                                    <td>item[2]</td>
+                         <td>{item.staffNo}</td>
+                  <td>{item.fname} {item.lname}</td>
+                  <td>{item.position}</td>
                                 </tr>
                             )))}
 

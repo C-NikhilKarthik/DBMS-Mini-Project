@@ -1,8 +1,23 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import InputField from '../components/InputField'
+import { useState,useEffect } from 'react';
 
-function Propertylisting({data}) {
+function Propertylisting() {
+
+    const [data, setdata] = useState([]);
+
+  
+    useEffect(() => {
+      const fetchproperty = async () => {
+        const response = await fetch("/getPropertyInfo");
+        const data = await response.json();
+        setdata(data);
+      };
+  
+      fetchproperty();
+    }, []);
+
     return (
         <div className='w-full flex items-center  pt-28 px-4 flex-col gap-8 bg-[url("https://wallpaperaccess.com/full/1126753.jpg")] h-screen bg-cover bg-scroll bg-center'>
             <Navbar />
@@ -31,11 +46,11 @@ function Propertylisting({data}) {
 
                             ) : (data.map((item) => (
                                 <tr>
-                                    <td>item[0]</td>
-                                    <td>item[1]</td>
-                                    <td>item[2]</td>
-                                    <td>item[3]</td>
-                                    <td>item[4]</td>
+                                    <td>{item.propertyNumber}</td>
+                                    <td>{item.streetAddress},{item.city}</td>
+                                    <td>{item.type}</td>
+                                    <td>{item.rooms}</td>
+                                    <td>{item.rent}/-</td>
                                 </tr>
                             )))}
 
