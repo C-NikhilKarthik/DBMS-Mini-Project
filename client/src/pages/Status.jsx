@@ -11,6 +11,23 @@ function Status() {
     return (
         <div className='w-full flex items-center py-28 px-4 flex-col gap-8 bg-slate-100  bg-cover bg-scroll bg-center'>
             <Navbar />
+
+            <div className='flex flex-col items-center justify-center bg-black bg-opacity-25 rounded-lg p-4 mt-4 w-4/5 shadow-xl'>
+                <div className='flex flex-col items-center'>
+                    <img src={PropertyListingImg} alt='Property Listing' className='w-96 h-auto rounded-xl' />
+                    <h2 className='text-2xl font-bold text-white underline'>Lease Form</h2>
+                </div>
+                <p className='text-center text-white text-lg mt-4'>
+                    Listing of available rental properties allows you to easily browse through a variety of options to find your perfect home.
+                </p>
+                <Link
+                    to='/status/leaseform'
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg my-2'
+                >
+                    Check
+                </Link>
+            </div>
+            
             <div className='flex flex-col items-center justify-center bg-black bg-opacity-25 rounded-lg p-4 mt-4 w-4/5 shadow-xl'>
                 <div className='flex flex-col items-center'>
                     <img src={StaffListingImg} alt='Property Listing' className='w-96 h-auto rounded-xl' />
