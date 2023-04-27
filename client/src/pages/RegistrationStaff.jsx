@@ -66,9 +66,6 @@ function RegistrationStaff() {
       window.alert("Staff Registration Successful")
     }
     
-
-
-
   }
 
   const [branches, setBranches] = useState([]);
