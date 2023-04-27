@@ -22,6 +22,7 @@ function LeaseForm() {
     const [paymentmethod,setpaymentmethod]=useState('')
     const [propertynumber,setpropertynumber]=useState('')
     const [rentstart,setrentstart]=useState(null)
+    const [rentend,setrentend]=useState(null)
     const [duration,setduration]=useState('')
     const [units,setunits]=useState('')
     const [depositpaid,setdepositpaid]=useState('')
@@ -38,7 +39,8 @@ function LeaseForm() {
               rentstart:rentstart,
               duration:duration,
               units:units,
-              depositpaid:depositpaid
+              depositpaid:depositpaid,
+              rentend:rentend
               
             }),
             headers:{ "Content-type": "application/json" }
@@ -57,6 +59,10 @@ function LeaseForm() {
 
     const handlerent=(date)=>{
         setrentstart(date)
+    }
+
+    const handlerentend =(date)=>{
+        setrentend(date)
     }
 
     
@@ -150,7 +156,7 @@ function LeaseForm() {
                             className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-md bg-transparent placeholder-black"
                             placeholderText="Rent Start Date"
                             />
-                  </div>
+                        </div>
                         </div>
 
                         <div className="relative rounded-full border">
@@ -168,6 +174,19 @@ function LeaseForm() {
                                 placeholder="Duration"
                             />
                             
+                        </div>
+
+                        <div className="relative rounded-full border">
+                        <div className="relative w-full flex items-center">
+                            < BsCalendar3 className="absolute text-xl z-[2] left-2" />
+                            <DatePicker
+                            selected={rentend}
+                            onChange={handlerentend}
+                            dateFormat="MM/dd/yyyy"
+                            className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-md bg-transparent placeholder-black"
+                            placeholderText="Rent End Date"
+                            />
+                        </div>
                         </div>
 
                         <div className="relative rounded-full border">

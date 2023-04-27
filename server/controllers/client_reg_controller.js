@@ -14,7 +14,7 @@ const reg =async (req, res) => {
   //console.log(mysqlDate)
 
   
-    con.query(`insert into Clients values ('${clientnum}','${lname}','${fname}','${clientReqType}',
+    con.query(`insert into Clients values ('${clientnum}','${lname}','${fname}',
     ${clientMaxRent},'${clientBranchno}','${clientStaffReg}','${mysqlDate}');`,(error,result,fields)=>{
       if(error)
       {
