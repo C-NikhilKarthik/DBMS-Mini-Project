@@ -22,6 +22,7 @@ function LeaseForm() {
     const [paymentmethod,setpaymentmethod]=useState('')
     const [propertynumber,setpropertynumber]=useState('')
     const [rentstart,setrentstart]=useState(null)
+    const [rentend,setrentend]=useState(null)
     const [duration,setduration]=useState('')
     const [units,setunits]=useState('')
     const [depositpaid,setdepositpaid]=useState('')
@@ -38,7 +39,7 @@ function LeaseForm() {
               rentstart:rentstart,
               duration:duration,
               units:units,
-              depositpaid:depositpaid
+              depositpaid:depositpaid,
               
             }),
             headers:{ "Content-type": "application/json" }
@@ -59,7 +60,7 @@ function LeaseForm() {
         setrentstart(date)
     }
 
-    
+ 
     return (
         <div className='w-full flex items-center  pt-28 px-4 flex-col gap-8 bg-[url("https://wallpaperaccess.com/full/1126753.jpg")] h-screen bg-cover bg-scroll bg-center'>
             <Navbar />
@@ -106,7 +107,7 @@ function LeaseForm() {
                                 <img src={clientType} alt="Client Icon" className="h-6 w-6" />
                             </div>
                             <input
-                                type="text"
+                                type="number"
                                 onChange={(e)=>setmonthlyrent(e.target.value)}
                                 className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
                                 placeholder="Monthly Rent"
@@ -150,7 +151,7 @@ function LeaseForm() {
                             className="w-full px-10 py-2 bg-white bg-opacity-[65%] rounded-md bg-transparent placeholder-black"
                             placeholderText="Rent Start Date"
                             />
-                  </div>
+                        </div>
                         </div>
 
                         <div className="relative rounded-full border">

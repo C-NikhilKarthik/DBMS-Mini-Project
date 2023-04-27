@@ -23,7 +23,7 @@ function RegistrationProperty() {
   const [city,setcity]=useState('')
   const [postalcode,setpostalcode]=useState(0)
   const [managedby,setmanagedby]=useState('')
-  const[ImageUrl,setImageUrl]=useState('')
+  const[ImageUrl,setImageUrl]=useState('no url')
 
   const handlesubmit = async(e)=>{
     const response=await fetch("/propertyregistration",{
