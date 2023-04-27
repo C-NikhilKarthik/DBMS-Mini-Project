@@ -26,8 +26,8 @@ function RecentListing() {
         {data.map((card) => (
           <ListingCard
             key={card.id}
-            img={card.Imageurl}
-            Address={card.streetAddress}
+            img={card.img_url}
+            Address={card.street}
             city={card.city}
             Title={card.Title}
             rooms={card.rooms}

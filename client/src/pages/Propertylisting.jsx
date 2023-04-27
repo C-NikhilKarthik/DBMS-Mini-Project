@@ -46,8 +46,8 @@ function Propertylisting() {
 
                             ) : (data.map((item) => (
                                 <tr>
-                                    <td>{item.propertyNumber}</td>
-                                    <td>{item.streetAddress},{item.city}</td>
+                                    <td>{item.propertyNo}</td>
+                                    <td>{item.street},{item.city},{item.zipCode}</td>
                                     <td>{item.type}</td>
                                     <td>{item.rooms}</td>
                                     <td>{item.rent}/-</td>

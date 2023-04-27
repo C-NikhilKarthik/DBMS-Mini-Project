@@ -11,6 +11,8 @@ const reg =async (req, res) => {
   const dateObj = new Date(req.body.dob);
   const mysqlDate = dateObj.toISOString().slice(0, 10);
 
+  
+
   if(req.body.position==='Manager')
   {
     if(req.body.managerstartdate===null || req.body.managerbonus===0)
@@ -18,13 +20,14 @@ const reg =async (req, res) => {
         res.json({mssg:"FAILED"})
     }
     else{
+        
         const dateObj2 = new Date(req.body.managerstartdate);
         const mysqlDate2 = dateObj2.toISOString().slice(0, 10);
         con.query(`insert into Staff(staffNo,branchNo,lname,fname,sex,dob,position,salary,mgrStartDate,mgrBonus) 
-        values('${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
+        values('M-${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${mysqlDate2}',
         ${req.body.managerbonus});
-        insert into BranchMgrs values('${req.body.branchNo}','${req.body.staffnumber}') `,(error,result,fields)=>{
+        insert into BranchMgrs values('${req.body.branchNo}','M-${req.body.staffnumber}') `,(error,result,fields)=>{
             if(error)
             {
                 console.log(error)
@@ -38,7 +41,7 @@ const reg =async (req, res) => {
 }
 else if(req.body.position==='Assistant'){
     con.query(`insert into staff(staffNo,branchNo,lname,fname,sex,dob,position,salary,supervisorNumber) 
-    values('${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
+    values('A-${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${req.body.supervisornum}'
         )`,(error,result,fields)=>{
             if(error)

@@ -13,6 +13,9 @@ import edit from "../assets/edit.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../assets/calendar.png";
+import axios from 'axios';
+
+
 function RegistrationProperty() {
   const [propertynum, setpropertynum] = useState('')
   const [type, settype] = useState('')
@@ -25,7 +28,39 @@ function RegistrationProperty() {
   const [managedby, setmanagedby] = useState('')
   const [ImageUrl, setImageUrl] = useState('no url')
 
+
+
+
+  const[ImageSelected,setImageSelected]=useState("")
+
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  const uploadImage = async () => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("file", ImageSelected);
+    formData.append("upload_preset", "t5v5qlov");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dmmfdufus/image/upload",
+        formData
+      );
+      setImageUrl(response.data.secure_url);
+      alert("Image uploaded");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+
   const handlesubmit = async (e) => {
+
+
+  
     const response = await fetch("/propertyregistration", {
       method: "POST",
       body: JSON.stringify({
@@ -52,7 +87,14 @@ function RegistrationProperty() {
     else {
       window.alert("Property Registration Successful")
     }
+
+
+    
+
+
+
   }
+
 
   return (
     <>
@@ -132,9 +174,17 @@ function RegistrationProperty() {
                   <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                   <span>Select Photo</span>
                 </label>
-                <input id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden"/>
+                <input onChange={(event)=>{
+                  setImageSelected(event.target.files[0])
+                }}id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden" />
+
+          
+       
 
               </div>
+              <button className="inline-block bg-gradient-to-br from-blue-300 to-blue-400 py-2 px-12 rounded-full text-lg text-purple-100 uppercase tracking-wide shadow-xs hover:shadow-2xl active:shadow-xl transform hover:-translate-y-1 active:translate-y-0 transition duration-200" onClick={uploadImage} disabled={isLoading || !ImageSelected}>
+        {isLoading ? "Uploading..." : "Upload"}
+      </button>
             </div>
 
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
@@ -223,6 +273,7 @@ function RegistrationProperty() {
             >
               Submit
             </button>
+
           </div>
         </div>
       </div>
