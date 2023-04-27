@@ -1,0 +1,19 @@
+Point to note: 
+
+1. Db is in BCNF.
+2. Added trigger to insert a lease record: 
+    a) Cannot add lease record with start date before an existing lease ends.
+    b) Cannot add lease record with end date after the start date of a previous lease.
+3. image_url attribute added to properties.
+4. branchNo attribute in staff table.
+5. added not null constraint to required attributes.
+6. postal Code incorporated in all addresses.
+7. new table for clientTelephoneNumber and ownerTelephoneNumber. (Multivalued, so separate table).
+8. function for new tables created for telephoneNumber to get all telephoneNumber in format: 'number1 / number2 / ....'
+    a) get_branch_telephone_numbers(branchNo)
+    b) get_client_telephone_numbers(clientNo)
+    c) getOwnerPhoneNos(ownerNumber)
+9. As hosted platform is caseSensitive, I have shortened few attribute names and used CamelCase for attribute names only.. 
+10. Table names are have starting letter capital for each word augmented.
+11. zipcode = postalCode
+                    *** ANY CHANGES TO BE MADE KINDLY LET ME KNOW ***
