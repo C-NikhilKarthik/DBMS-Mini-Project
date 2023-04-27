@@ -20,11 +20,11 @@ const reg =async (req, res) => {
     else{
         const dateObj2 = new Date(req.body.managerstartdate);
         const mysqlDate2 = dateObj2.toISOString().slice(0, 10);
-        con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,managerStartDate,managerBonus) 
+        con.query(`insert into Staff(staffNo,lname,fname,sex,dob,position,salary,managerStartDate,managerBonus) 
         values('${req.body.staffnumber}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${mysqlDate2}',
         ${req.body.managerbonus});
-        insert into branchManagers values('${req.body.branchno}','${req.body.staffnumber}') `,(error,result,fields)=>{
+        insert into BranchManagers values('${req.body.branchno}','${req.body.staffnumber}') `,(error,result,fields)=>{
             if(error)
             {
                 console.log(error)

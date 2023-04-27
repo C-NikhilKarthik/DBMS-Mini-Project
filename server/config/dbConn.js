@@ -1,9 +1,9 @@
 const mysql=require('mysql')
 const con=mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"password",
-    database:"dreamhome2",
+    host:"sql12.freemysqlhosting.net",
+    user:"sql12614486",
+    password:"CdAQzTWKhF",
+    database:"sql12614486",
     multipleStatements:"true"
 })
 
