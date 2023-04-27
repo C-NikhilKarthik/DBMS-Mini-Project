@@ -1,37 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 function Contact() {
     const [branchName, setBranchName] = useState('');
+    const [branches, setBranches] = useState([]);
+    const [val, setVal] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
     };
 
-    const handleChange = (e) => {
-        setBranchName(e.target.value);
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        const response = await fetch(`/faq/${branchName}`, {
+            method: "GET",
+            headers: { "Content-type": "application/json" }
+        })
+
+        const json = await response.json()
+        setVal(json)
     };
 
+
+    useEffect(() => {
+        const fetchBranches = async () => {
+            const response = await fetch("/getbranches");
+            const data = await response.json();
+            setBranches(data);
+        };
+
+        fetchBranches();
+    }, []);
+
+    const handleBranchChange = (e) => {
+        setBranchName(e.target.value);
+    };
     return (
         <>
             <Navbar />
-
             <div className="flex flex-col items-center px-4 justify-center mt-12 md:mt-36">
                 <h1 className="text-3xl font-bold mb-4 underline">Search For Branch</h1>
                 <div className="w-full max-w-sm my-4">
                     <form onSubmit={handleSubmit} className="flex">
-                        <input
-                            className="flex-grow w-full px-4 py-2 mr-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-blue-500"
-                            type="text"
+                        <select
+                            id="branch"
+                            name="branch"
                             value={branchName}
-                            onChange={handleChange}
-                            placeholder="Find branch"
-                            aria-label="Search"
-                        />
+                            onChange={handleBranchChange}
+                            className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                        >
+                            <option value="">Select branchNo</option>
+                            {branches.map((branch) => (
+                                <option key={branch.branchNo} value={branch.branchNo}>
+                                    {branch.branchNo}
+                                </option>
+                            ))}
+                        </select>
                         <button
                             className="inline-block px-6 py-3 text-sm font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
                             type="submit"
+                            onClick={handleSearch}
                         >
                             Search
                         </button>
@@ -44,14 +73,22 @@ function Contact() {
                     <div className="bg-slate-200 rounded-lg shadow-lg overflow-hidden cursor-pointer">
                         <div className="p-4">
                             <h2 className="text-xl font-bold mb-2">Address</h2>
-                            <p className="text-gray-700">123, Main Road, Vidyanagar, Hubli, Karnataka 580031, India.</p>
+                            {
+                                val.length > 0 && (
+                                    <p className="text-gray-700">{val[0].street},{val[0].city},{val[0].zipCode}</p>
+                                )
+                            }
                         </div>
                     </div>
 
                     <div className="bg-slate-200 rounded-lg shadow-lg overflow-hidden cursor-pointer">
                         <div className="p-4">
                             <h2 className="text-xl font-bold mb-2">Contact</h2>
-                            <p className="text-gray-700">+91 98765 43210</p>
+                            {
+                                val.length > 0 && (
+                                    <p className="text-gray-700">{val[0].phoneNo}</p>
+                                )
+                            }
                             <p className="text-gray-700">bookinghouse123@gmail.com</p>
                         </div>
                     </div>
