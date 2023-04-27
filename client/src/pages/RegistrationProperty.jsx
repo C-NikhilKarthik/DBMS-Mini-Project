@@ -13,6 +13,9 @@ import edit from "../assets/edit.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calendarIcon from "../assets/calendar.png";
+import axios from 'axios';
+
+
 function RegistrationProperty() {
   const [propertynum, setpropertynum] = useState('')
   const [type, settype] = useState('')
@@ -25,7 +28,32 @@ function RegistrationProperty() {
   const [managedby, setmanagedby] = useState('')
   const [ImageUrl, setImageUrl] = useState('no url')
 
+
+
+
+  const[ImageSelected,setImageSelected]=useState("")
+
+
+
+
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("file", ImageSelected);
+    formData.append("upload_preset", "t5v5qlov");
+  
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dmmfdufus/image/upload", formData)
+      .then((response) => {
+        setImageUrl(response.data.secure_url);
+        alert("Image uploaded");
+      });
+  };
+  
+
   const handlesubmit = async (e) => {
+
+
+  
     const response = await fetch("/propertyregistration", {
       method: "POST",
       body: JSON.stringify({
@@ -52,7 +80,14 @@ function RegistrationProperty() {
     else {
       window.alert("Property Registration Successful")
     }
+
+
+    
+
+
+
   }
+
 
   return (
     <>
@@ -132,9 +167,15 @@ function RegistrationProperty() {
                   <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                   <span>Select Photo</span>
                 </label>
-                <input id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden"/>
+                <input onChange={(event)=>{
+                  setImageSelected(event.target.files[0])
+                }}id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden" />
+
+          
+       
 
               </div>
+              <button onClick={uploadImage} >upload</button>
             </div>
 
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
@@ -223,6 +264,7 @@ function RegistrationProperty() {
             >
               Submit
             </button>
+
           </div>
         </div>
       </div>

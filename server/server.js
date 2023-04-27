@@ -54,6 +54,7 @@ app.use('/getbranchesPhoneNo',require('./routes/getbranchesPhoneNumber'))
 
 
 
+
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
