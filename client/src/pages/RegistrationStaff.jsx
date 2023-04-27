@@ -22,11 +22,12 @@ function RegistrationStaff() {
   const [salary,setsalary]=useState(0)
   const [dob, setdob] = useState(null);
   const [sex,setsex]=useState('')
-  const [branchno,setbranchno]=useState('')
   const [supervisornum,setsupervisornum]=useState('')
   const [managerstartdate, setmanagerstartdate] = useState(null);
   const [managerbonus,setmanagerbonus]=useState(0)
   const [open, setOpen] = useState(false);
+  const[branchNo,setbranchNo]=useState()
+
 
   const handleDateChange = (date) => {
     setmanagerstartdate(date);
@@ -34,6 +35,10 @@ function RegistrationStaff() {
 
   const handleDobChange = (date) => {
     setdob(date);
+  };
+
+  const handleBranchNoChange = (event) => {
+    setbranchNo(event.target.value);
   };
 
   const handle_submit=async(e)=>{
@@ -47,10 +52,11 @@ function RegistrationStaff() {
         salary:salary,
         dob:dob,
         sex:sex,
-        branchno:branchno,
+        branchNo:branchNo,
         supervisornum:supervisornum,
         managerstartdate:managerstartdate,
-        managerbonus:managerbonus
+        managerbonus:managerbonus,
+        branchNo:branchNo
         
       }),
       headers:{ "Content-type": "application/json" }
@@ -70,11 +76,12 @@ function RegistrationStaff() {
 
 
   }
-
+  const[BranchesPhoneNo,setBranchesPhoneNo]=useState([])
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(null);
 
   const [selectedBranchPhoneNo, setSelectedBranchPhoneNo] = useState(null);
+
   useEffect(() => {
     const fetchBranches = async () => {
       const response = await fetch("/getbranches");
@@ -85,6 +92,18 @@ function RegistrationStaff() {
     fetchBranches();
   }, []);
 
+  useEffect(() => {
+    const fetchBranchesPhoneNo = async () => {
+      const response = await fetch("/getbranchesPhoneNo");
+      const data = await response.json();
+      setBranchesPhoneNo(data);
+    };
+
+    fetchBranchesPhoneNo();
+  }, []);
+
+
+
   const handleBranchChange = (event) => {
     setSelectedBranch(event.target.value);
   };
@@ -92,6 +111,7 @@ function RegistrationStaff() {
   const handleBranchChangePhoneNo = (event) => {
     setSelectedBranchPhoneNo(event.target.value);
   };
+
   return (
     <>
       <Navbar />
@@ -114,7 +134,7 @@ function RegistrationStaff() {
                     <select onChange={(e)=>setposition(e.target.value)} className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-md bg-transparent appearance-none placeholder-black">
                       <option value="None">Position</option>
                       <option value="Manager">Manager</option>
-                      <option value="Supervisor">Supervisor</option>
+                      <option value="Supervisior">Supervisior</option>
                       <option value="Assistant">Assistant</option>
                     </select>
                   < GiRank3 className="absolute text-xl left-2" />
@@ -162,7 +182,7 @@ function RegistrationStaff() {
                   name="branch"
                   className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
                   
-                  onChange={(e) => setbranchno(e.target.value)}
+                  onChange={handleBranchNoChange}
                 >
                   <option value="">Select branchNo</option>
                   {branches.map((branch) => (
@@ -190,7 +210,7 @@ function RegistrationStaff() {
                   <option value="">Select branch</option>
                   {branches.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                      {branch.streetAddress},{branch.city}
+                      {branch.street},{branch.city},{branch.zipCode}
                     </option>
                   ))}
                 </select>
@@ -210,10 +230,10 @@ function RegistrationStaff() {
                   value={selectedBranchPhoneNo}
                   onChange={handleBranchChangePhoneNo}
                 >
-                  <option value="">Select branch</option>
-                  {branches.map((branch) => (
+                  <option value="">Select telephone No</option>
+                  {BranchesPhoneNo.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                      {branch.telephoneNumber}
+                      {branch.phoneNo}
                     </option>
                   ))}
                 </select>

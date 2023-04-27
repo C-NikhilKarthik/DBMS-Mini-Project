@@ -194,7 +194,7 @@ function RegistrationClient() {
                   <option value="">Select branch</option>
                   {branches.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                  {branch.streetAddress},{branch.city}
+                 {branch.street},{branch.city},{branch.zipCode}
                     </option>
                   ))}
                 </select>

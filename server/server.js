@@ -34,6 +34,7 @@ app.use('/clientregistration',require('./routes/clientregistration'))
 //staff registration:
 app.use('/staffregistration',require('./routes/staffregistration'))
 
+
 //property registration:
 app.use('/propertyregistration',require('./routes/propertyregistration'))
 
@@ -48,7 +49,7 @@ app.use('/getPropertyInfo',require('./routes/getPropertyInfo'))
 app.use('/leaseregistration',require('./routes/leaseregistration'))
 
 app.use('/propertyImage',require('./routes/propertyImage'))
-
+app.use('/getbranchesPhoneNo',require('./routes/getbranchesPhoneNumber'))
 
 app.all('*', (req, res) => {
     res.status(404)
