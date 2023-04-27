@@ -9,15 +9,23 @@ function Stafflisting() {
     const [data, setdata] = useState([]);
 
   
-    useEffect(() => {
-      const fetchstaff = async () => {
+    // useEffect(() => {
+    //   const fetchstaff = async () => {
+    //     const response = await fetch("/getStaffinfo");
+    //     const data = await response.json();
+    //     setdata(data);
+    //   };
+  
+    //   fetchstaff();
+    // }, []);
+
+    const fetchstaff = async () => {
         const response = await fetch("/getStaffinfo");
         const data = await response.json();
         setdata(data);
       };
   
-      fetchstaff();
-    }, []);
+      
 
 
   return (
@@ -34,7 +42,7 @@ function Stafflisting() {
                             <InputField type={"text"} placeholder={"Branch Number"} />
                         </div>
 
-                        <button className='px-4 py-2 rounded bg-blue-400 text-slate-300'>Search</button>
+                        <button className='px-4 py-2 rounded bg-blue-400 text-slate-300' onClick={fetchstaff}>Search</button>
                     </div>
                     <div className='px-4 pb-10'>
                         <table className='px-4 rounded border-[2px] border-slate-300 w-full text-slate-300'>
