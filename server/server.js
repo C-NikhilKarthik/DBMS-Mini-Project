@@ -52,6 +52,7 @@ app.use('/propertyImage',require('./routes/propertyImage'))
 app.use('/getbranchesPhoneNo',require('./routes/getbranchesPhoneNumber'))
 
 
+app.use('/commenting',require('./routes/CommentonProperty'))
 
 
 

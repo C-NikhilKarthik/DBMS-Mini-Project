@@ -29,10 +29,11 @@ function RecentListing() {
             img={card.img_url}
             Address={card.street}
             city={card.city}
-            Title={card.Title}
             rooms={card.rooms}
             price={card.rent}
-            Description={card.Description}
+            propertyNo={card.propertyNo}
+            postal={card.zipCode}
+       
           />
         ))}
       </div>
