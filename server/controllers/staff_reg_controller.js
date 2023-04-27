@@ -21,10 +21,10 @@ const reg =async (req, res) => {
         const dateObj2 = new Date(req.body.managerstartdate);
         const mysqlDate2 = dateObj2.toISOString().slice(0, 10);
         con.query(`insert into Staff(staffNo,branchNo,lname,fname,sex,dob,position,salary,mgrStartDate,mgrBonus) 
-        values('${req.body.staffnumber}','${req.body.branchno}','${lname}','${fname}','${req.body.sex}',
+        values('${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${mysqlDate2}',
         ${req.body.managerbonus});
-        insert into BranchMgrs values('${req.body.branchno}','${req.body.staffnumber}') `,(error,result,fields)=>{
+        insert into BranchMgrs values('${req.body.branchNo}','${req.body.staffnumber}') `,(error,result,fields)=>{
             if(error)
             {
                 console.log(error)
@@ -38,7 +38,7 @@ const reg =async (req, res) => {
 }
 else if(req.body.position==='Assistant'){
     con.query(`insert into staff(staffNo,branchNo,lname,fname,sex,dob,position,salary,supervisorNumber) 
-    values('${req.body.staffnumber}','${req.body.branchno}','${lname}','${fname}','${req.body.sex}',
+    values('${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary},'${req.body.supervisornum}'
         )`,(error,result,fields)=>{
             if(error)
@@ -54,7 +54,7 @@ else if(req.body.position==='Assistant'){
 }
 else{
     con.query(`insert into staff(staffNo,branchNo,lname,fname,sex,dob,position,salary) 
-    values('${req.body.staffnumber}','${req.body.branchno}','${lname}','${fname}','${req.body.sex}',
+    values('${req.body.staffnumber}','${req.body.branchNo}','${lname}','${fname}','${req.body.sex}',
         '${mysqlDate}','${req.body.position}',${req.body.salary})`,(error,result,fields)=>{
             if(error)
             {
