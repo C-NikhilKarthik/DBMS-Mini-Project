@@ -19,4 +19,6 @@ const reg =async (req, res) => {
     })
 };
 
+
+
 module.exports = { reg };

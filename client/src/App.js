@@ -15,6 +15,7 @@ import Viewreport from "./pages/Viewreport";
 import Viewrent from "./pages/Viewrent";
 import FAQ from "./pages/FAQ";
 import LeaseForm from "./pages/LeaseForm";
+import RegistrationAdvertisement from "./pages/RegistrationAdvertisement";
 
 function App() {
   return (
@@ -38,9 +39,14 @@ function App() {
         <Route path="/status/viewrent" element={< Viewrent/>} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/status/leaseform" element={<LeaseForm />} />
+        <Route path="/registration/advertisement" element={<RegistrationAdvertisement/>} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
+
+
