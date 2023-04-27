@@ -74,7 +74,7 @@ function RegistrationClient() {
     <>
       <Navbar />
       <div
-        className="bg-cover bg-center h-full sm:h-screen w-screen flex items-center justify-center py-32 px-4"
+        className="bg-cover bg-center h-full w-full flex items-center justify-center py-40 px-4"
         style={{ backgroundImage: `url(${registrationclient})` }}
       >
         <div className="sm:w-2/3 w-full h-fit bg-[#050505] bg-opacity-[43%] backdrop-blur-md rounded-lg p-4">

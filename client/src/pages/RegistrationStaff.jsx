@@ -116,7 +116,7 @@ function RegistrationStaff() {
     <>
       <Navbar />
       <div
-        className="bg-cover bg-center h-full sm:h-screen w-screen flex items-center justify-center py-32 px-4"
+        className="bg-cover bg-center h-full w-full flex items-center justify-center py-40 px-4"
         style={{ backgroundImage: `url(${myBackgroundImage})` }}
       >
         <form>
@@ -227,7 +227,7 @@ function RegistrationStaff() {
                   id="branch"
                   name="branch"
                   className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
-                  value={selectedBranchPhoneNo}
+                  value={selectedBranchPhoneNo} 
                   onChange={handleBranchChangePhoneNo}
                 >
                   <option value="">Select telephone No</option>
@@ -267,7 +267,7 @@ function RegistrationStaff() {
                         placeholderText="Manager Start Date"
                       />
                     </div>
-                    <div className="relative fle  x w-full items-center">
+                    <div className="relative flex w-full items-center">
                       <input onChange={(e)=>setmanagerbonus(e.target.value)} placeholder="Manager Bonus" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                       < MdOutlineAttachMoney className="absolute text-xl left-2" />
                     </div>
