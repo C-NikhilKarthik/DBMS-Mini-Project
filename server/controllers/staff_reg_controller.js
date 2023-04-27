@@ -36,11 +36,26 @@ const reg =async (req, res) => {
         })
     }
 }
-else{
-    con.query(`insert into staff(staffNo,lname,fname,sex,dob,position,salary,supervisorNumber) 
-    values('${req.body.staffnumber}','${lname}','${fname}','${req.body.sex}',
-        '${mysqlDate}}','${req.body.position}',${req.body.salary},'${req.body.supervisornum}'
+else if(req.body.position==='Assistant'){
+    con.query(`insert into staff(staffNo,branchNo,lname,fname,sex,dob,position,salary,supervisorNumber) 
+    values('${req.body.staffnumber}','${req.body.branchno}','${lname}','${fname}','${req.body.sex}',
+        '${mysqlDate}','${req.body.position}',${req.body.salary},'${req.body.supervisornum}'
         )`,(error,result,fields)=>{
+            if(error)
+            {
+                console.log(error)
+                res.json({mssg:"FAILED"})
+            }
+            else{
+                res.json({mssg:"WORKED"})
+            }
+        })
+
+}
+else{
+    con.query(`insert into staff(staffNo,branchNo,lname,fname,sex,dob,position,salary) 
+    values('${req.body.staffnumber}','${req.body.branchno}','${lname}','${fname}','${req.body.sex}',
+        '${mysqlDate}','${req.body.position}',${req.body.salary})`,(error,result,fields)=>{
             if(error)
             {
                 console.log(error)

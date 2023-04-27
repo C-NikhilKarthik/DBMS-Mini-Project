@@ -114,7 +114,7 @@ function RegistrationStaff() {
                     <select onChange={(e)=>setposition(e.target.value)} className="block w-full pl-10 bg-white bg-opacity-[65%] pr-3 py-2 rounded-md bg-transparent appearance-none placeholder-black">
                       <option value="None">Position</option>
                       <option value="Manager">Manager</option>
-                      <option value="Supervisior">Supervisior</option>
+                      <option value="Supervisor">Supervisor</option>
                       <option value="Assistant">Assistant</option>
                     </select>
                   < GiRank3 className="absolute text-xl left-2" />
