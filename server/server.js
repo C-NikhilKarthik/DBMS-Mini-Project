@@ -53,6 +53,10 @@ app.use(
   "/faq",
   require("./routes/faq")
 );
+
+app.use("/getproperties", require("./routes/getproperties"));
+
+app.use("/reports", require("./routes/report"));
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
