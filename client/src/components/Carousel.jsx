@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence, easeInOut, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FaTape } from 'react-icons/fa';
 import { BsHouseFill, BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
 import { HiTruck } from 'react-icons/hi';

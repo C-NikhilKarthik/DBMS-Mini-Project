@@ -72,9 +72,6 @@ function RegistrationStaff() {
       window.alert("Staff Registration Successful")
     }
     
-
-
-
   }
   const[BranchesPhoneNo,setBranchesPhoneNo]=useState([])
   const [branches, setBranches] = useState([]);
