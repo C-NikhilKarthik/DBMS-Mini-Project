@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { HiPhotograph } from "react-icons/hi";
 import myBackgroundImage from "../assets/registration-bg.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -126,15 +127,12 @@ function RegistrationProperty() {
 
               <div className="relative rounded-full border overflow-hidden">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <img src={money} alt="Money Icon" className="h-6 w-6" />
+                  < HiPhotograph className="text-2xl"/>
                 </div>
                 <label for="file-upload" class="inline-flex items-center justify-center px-4 py-2 w-full text-sm font-medium bg-white bg-opacity-[65%] text-black border border-transparent rounded-md hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                  <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                  <span>Select Photo</span>
+                  <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>                  <span>Select Photo</span>
                 </label>
-                <input id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden"/>
-
-              </div>
+                <input id="file-upload" name="file-upload" accept="image/*" type="file" class="hidden" />             </div>
             </div>
 
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
