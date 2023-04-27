@@ -47,6 +47,8 @@ app.use('/getPropertyInfo',require('./routes/getPropertyInfo'))
 //lease registration:
 app.use('/leaseregistration',require('./routes/leaseregistration'))
 
+app.use('/propertyImage',require('./routes/propertyImage'))
+
 
 app.all('*', (req, res) => {
     res.status(404)

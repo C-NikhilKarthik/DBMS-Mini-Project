@@ -143,12 +143,25 @@ function RegistrationClient() {
 
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
               <div className="relative rounded-full border">
-                <input
-                  type="text"
-                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
-                  placeholder="Branch Number"
+
+
+              <select
+                  id="branch"
+                  name="branch"
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+           
                   onChange={(e) => setClientBranchno(e.target.value)}
-                />
+
+                >
+                  <option value="">Select branchNo</option>
+                  {branches.map((branch) => (
+                    <option key={branch.branchNo} value={branch.branchNo}>
+                      {branch.branchNo}
+                    </option>
+                  ))}
+                </select>
+
+
                 <img
                   src={office}
                   alt="Office Icon"

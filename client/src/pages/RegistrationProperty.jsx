@@ -23,6 +23,7 @@ function RegistrationProperty() {
   const [city,setcity]=useState('')
   const [postalcode,setpostalcode]=useState(0)
   const [managedby,setmanagedby]=useState('')
+  const[ImageUrl,setImageUrl]=useState('')
 
   const handlesubmit = async(e)=>{
     const response=await fetch("/propertyregistration",{
@@ -36,7 +37,9 @@ function RegistrationProperty() {
         streetaddress:streetaddress,
         city:city,
         postalcode:postalcode,
-        managedby:managedby
+        managedby:managedby,
+        ImageUrl:ImageUrl
+
       }),
       headers:{ "Content-type": "application/json" }
     })

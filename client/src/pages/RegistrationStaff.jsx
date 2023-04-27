@@ -74,6 +74,7 @@ function RegistrationStaff() {
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(null);
 
+  const [selectedBranchPhoneNo, setSelectedBranchPhoneNo] = useState(null);
   useEffect(() => {
     const fetchBranches = async () => {
       const response = await fetch("/getbranches");
@@ -86,6 +87,10 @@ function RegistrationStaff() {
 
   const handleBranchChange = (event) => {
     setSelectedBranch(event.target.value);
+  };
+
+  const handleBranchChangePhoneNo = (event) => {
+    setSelectedBranchPhoneNo(event.target.value);
   };
   return (
     <>
@@ -152,12 +157,20 @@ function RegistrationStaff() {
 
               <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
                 <div className="relative flex items-center">
-                  <input
-                    onChange={(e)=>setbranchno(e.target.value)}
-                    type="text"
-                    className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black"
-                    placeholder="Branch Number"
-                  />
+                <select
+                  id="branch"
+                  name="branch"
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                  
+                  onChange={(e) => setbranchno(e.target.value)}
+                >
+                  <option value="">Select branchNo</option>
+                  {branches.map((branch) => (
+                    <option key={branch.branchNo} value={branch.branchNo}>
+                      {branch.branchNo}
+                    </option>
+                  ))}
+                </select>
                   <img
                     src={office}
                     alt="Office Icon"
@@ -190,7 +203,20 @@ function RegistrationStaff() {
                   />
                 </div>
                 <div className="relative flex items-center">
-                  <input placeholder="Branch Telephone Numbers" type="text" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
+                <select
+                  id="branch"
+                  name="branch"
+                  className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
+                  value={selectedBranchPhoneNo}
+                  onChange={handleBranchChangePhoneNo}
+                >
+                  <option value="">Select branch</option>
+                  {branches.map((branch) => (
+                    <option key={branch.branchNo} value={branch.branchNo}>
+                      {branch.telephoneNumber}
+                    </option>
+                  ))}
+                </select>
                   < BsTelephoneInboundFill className="absolute text-xl left-2" />
                 </div>
               </div>
