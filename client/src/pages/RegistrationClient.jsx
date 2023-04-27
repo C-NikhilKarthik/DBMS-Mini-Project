@@ -22,6 +22,7 @@ function RegistrationClient() {
   const [clientMaxRent, setClientMaxRent] = useState(null);
   const [clientBranchno, setClientBranchno] = useState("");
   const [clientStaffReg, setClientStaffReg] = useState("");
+  const [clientcontact, setClientcontact] = useState('');
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -31,13 +32,14 @@ function RegistrationClient() {
     const response = await fetch("/clientregistration", {
       method: "POST",
       body: JSON.stringify({
-        selectedDate,
-        clientnum,
-        clientName,
-        clientReqType,
-        clientMaxRent,
-        clientBranchno,
-        clientStaffReg,
+        selectedDate:selectedDate,
+        clientnum:clientnum,
+        clientName:clientName,
+        clientReqType:clientReqType,
+        clientMaxRent:clientMaxRent,
+        clientBranchno:clientBranchno,
+        clientStaffReg:clientStaffReg,
+        clientcontact:clientcontact
       }),
       headers: { "Content-type": "application/json" },
     });
@@ -72,7 +74,7 @@ function RegistrationClient() {
     <>
       <Navbar />
       <div
-        className="bg-cover bg-center h-full sm:h-screen w-screen flex items-center justify-center py-32 px-4"
+        className="bg-cover bg-center h-full w-full flex items-center justify-center py-40 px-4"
         style={{ backgroundImage: `url(${registrationclient})` }}
       >
         <div className="sm:w-2/3 w-full h-fit bg-[#050505] bg-opacity-[43%] backdrop-blur-md rounded-lg p-4">
@@ -106,6 +108,18 @@ function RegistrationClient() {
                   src={NameIcon}
                   alt="Name Icon"
                   className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                />
+              </div>
+              <div className="relative rounded-full border">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <img src={money} alt="Money Icon" className="h-6 w-6" />
+                </div>
+                <input
+                  type="text"
+                  className="w-full bg-white bg-opacity-[65%] px-10 py-2 rounded-full bg-transparent placeholder-black"
+                  placeholder="Client Contact Number"
+                  pattern="[0-9]*"
+                  onChange={(e) => setClientcontact(e.target.value)}
                 />
               </div>
 
@@ -180,7 +194,7 @@ function RegistrationClient() {
                   <option value="">Select branch</option>
                   {branches.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                  {branch.streetAddress},{branch.city}
+                 {branch.street},{branch.city},{branch.zipCode}
                     </option>
                   ))}
                 </select>

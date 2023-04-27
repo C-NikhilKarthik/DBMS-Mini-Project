@@ -22,11 +22,12 @@ function RegistrationStaff() {
   const [salary,setsalary]=useState(0)
   const [dob, setdob] = useState(null);
   const [sex,setsex]=useState('')
-  const [branchno,setbranchno]=useState('')
   const [supervisornum,setsupervisornum]=useState('')
   const [managerstartdate, setmanagerstartdate] = useState(null);
   const [managerbonus,setmanagerbonus]=useState(0)
   const [open, setOpen] = useState(false);
+  const[branchNo,setbranchNo]=useState()
+
 
   const handleDateChange = (date) => {
     setmanagerstartdate(date);
@@ -34,6 +35,10 @@ function RegistrationStaff() {
 
   const handleDobChange = (date) => {
     setdob(date);
+  };
+
+  const handleBranchNoChange = (event) => {
+    setbranchNo(event.target.value);
   };
 
   const handle_submit=async(e)=>{
@@ -47,10 +52,11 @@ function RegistrationStaff() {
         salary:salary,
         dob:dob,
         sex:sex,
-        branchno:branchno,
+        branchNo:branchNo,
         supervisornum:supervisornum,
         managerstartdate:managerstartdate,
-        managerbonus:managerbonus
+        managerbonus:managerbonus,
+        branchNo:branchNo
         
       }),
       headers:{ "Content-type": "application/json" }
@@ -67,11 +73,12 @@ function RegistrationStaff() {
     }
     
   }
-
+  const[BranchesPhoneNo,setBranchesPhoneNo]=useState([])
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(null);
 
   const [selectedBranchPhoneNo, setSelectedBranchPhoneNo] = useState(null);
+
   useEffect(() => {
     const fetchBranches = async () => {
       const response = await fetch("/getbranches");
@@ -82,6 +89,18 @@ function RegistrationStaff() {
     fetchBranches();
   }, []);
 
+  useEffect(() => {
+    const fetchBranchesPhoneNo = async () => {
+      const response = await fetch("/getbranchesPhoneNo");
+      const data = await response.json();
+      setBranchesPhoneNo(data);
+    };
+
+    fetchBranchesPhoneNo();
+  }, []);
+
+
+
   const handleBranchChange = (event) => {
     setSelectedBranch(event.target.value);
   };
@@ -89,11 +108,12 @@ function RegistrationStaff() {
   const handleBranchChangePhoneNo = (event) => {
     setSelectedBranchPhoneNo(event.target.value);
   };
+
   return (
     <>
       <Navbar />
       <div
-        className="bg-cover bg-center h-full sm:h-screen w-screen flex items-center justify-center py-32 px-4"
+        className="bg-cover bg-center h-full w-full flex items-center justify-center py-40 px-4"
         style={{ backgroundImage: `url(${myBackgroundImage})` }}
       >
         <form>
@@ -159,7 +179,7 @@ function RegistrationStaff() {
                   name="branch"
                   className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
                   
-                  onChange={(e) => setbranchno(e.target.value)}
+                  onChange={handleBranchNoChange}
                 >
                   <option value="">Select branchNo</option>
                   {branches.map((branch) => (
@@ -187,7 +207,7 @@ function RegistrationStaff() {
                   <option value="">Select branch</option>
                   {branches.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                      {branch.streetAddress},{branch.city}
+                      {branch.street},{branch.city},{branch.zipCode}
                     </option>
                   ))}
                 </select>
@@ -204,13 +224,13 @@ function RegistrationStaff() {
                   id="branch"
                   name="branch"
                   className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded-full bg-transparent appearance-none placeholder-black"
-                  value={selectedBranchPhoneNo}
+                  value={selectedBranchPhoneNo} 
                   onChange={handleBranchChangePhoneNo}
                 >
-                  <option value="">Select branch</option>
-                  {branches.map((branch) => (
+                  <option value="">Select telephone No</option>
+                  {BranchesPhoneNo.map((branch) => (
                     <option key={branch.branchNo} value={branch.branchNo}>
-                      {branch.telephoneNumber}
+                      {branch.phoneNo}
                     </option>
                   ))}
                 </select>
@@ -244,7 +264,7 @@ function RegistrationStaff() {
                         placeholderText="Manager Start Date"
                       />
                     </div>
-                    <div className="relative fle  x w-full items-center">
+                    <div className="relative flex w-full items-center">
                       <input onChange={(e)=>setmanagerbonus(e.target.value)} placeholder="Manager Bonus" type="number" className="bg-white flex items-center bg-opacity-[65%] px-10 py-2 rounded-md bg-transparent placeholder-black w-full" />
                       < MdOutlineAttachMoney className="absolute text-xl left-2" />
                     </div>

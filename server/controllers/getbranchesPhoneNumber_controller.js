@@ -2,7 +2,7 @@ const express = require("express");
 const con=require('../config/dbConn')
 
 const data = async (req, res) => {
-    con.query('select * from Staff', (error, result, fields) => {
+    con.query('select * from branchphoneno', (error, result, fields) => {
       if (error) {
         console.log(error)
         res.json({ mssg: "FAILED" })
