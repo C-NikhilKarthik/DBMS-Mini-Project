@@ -33,20 +33,27 @@ function RegistrationProperty() {
 
   const[ImageSelected,setImageSelected]=useState("")
 
-
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const uploadImage = async () => {
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("file", ImageSelected);
     formData.append("upload_preset", "t5v5qlov");
-  
-    await axios
-      .post("https://api.cloudinary.com/v1_1/dmmfdufus/image/upload", formData)
-      .then((response) => {
-        setImageUrl(response.data.secure_url);
-        alert("Image uploaded");
-      });
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dmmfdufus/image/upload",
+        formData
+      );
+      setImageUrl(response.data.secure_url);
+      alert("Image uploaded");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   
 
@@ -175,7 +182,9 @@ function RegistrationProperty() {
        
 
               </div>
-              <button onClick={uploadImage} >upload</button>
+              <button className="inline-block bg-gradient-to-br from-blue-300 to-blue-400 py-2 px-12 rounded-full text-lg text-purple-100 uppercase tracking-wide shadow-xs hover:shadow-2xl active:shadow-xl transform hover:-translate-y-1 active:translate-y-0 transition duration-200" onClick={uploadImage} disabled={isLoading || !ImageSelected}>
+        {isLoading ? "Uploading..." : "Upload"}
+      </button>
             </div>
 
             <div className="bg-[#EFEFEF] bg-opacity-[16%] flex flex-col gap-6 p-4 rounded-2xl">
