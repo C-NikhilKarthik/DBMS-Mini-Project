@@ -50,6 +50,9 @@ app.use('/leaseregistration',require('./routes/leaseregistration'))
 
 app.use('/propertyImage',require('./routes/propertyImage'))
 
+//advertisement:
+app.use('/adregistration',require('./routes/adregistration'))
+
 
 
 app.use('/commenting',require('./routes/CommentonProperty'))
