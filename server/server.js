@@ -45,9 +45,19 @@ app.use("/getStaffInfo", require("./routes/getStaffInfo"));
 app.use("/getPropertyInfo", require("./routes/getPropertyInfo"));
 
 //lease registration:
-app.use("/leaseregistration", require("./routes/leaseregistration"));
 
-app.use("/propertyImage", require("./routes/propertyImage"));
+app.use('/leaseregistration',require('./routes/leaseregistration'))
+
+app.use('/propertyImage',require('./routes/propertyImage'))
+
+//advertisement:
+app.use('/adregistration',require('./routes/adregistration'))
+
+
+
+app.use('/commenting',require('./routes/CommentonProperty'))
+
+
 app.use("/getbranchesPhoneNo", require("./routes/getbranchesPhoneNumber"));
 app.use(
   "/faq",
@@ -67,6 +77,7 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 Not Found");
   }
 });
+
 
 //Listening on port 5000
 app.listen(5000, () => {

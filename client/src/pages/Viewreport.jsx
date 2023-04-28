@@ -41,7 +41,7 @@ function Viewreport({ data }) {
                                 onChange={handleBranchChange}
                                 className="block bg-white bg-opacity-[65%] w-full pl-10 pr-3 py-2 rounded text-slate-600 bg-transparent appearance-none placeholder-black"
                             >
-                                <option value="">Select branchNo</option>
+                                <option value="">Select Property Number</option>
                                 {branches.map((branch) => (
                                     <option key={branch.propertyNo} value={branch.propertyNo}>
                                         {branch.propertyNo}

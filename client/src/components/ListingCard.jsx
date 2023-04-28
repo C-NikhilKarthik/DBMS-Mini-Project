@@ -6,7 +6,7 @@ import { FcViewDetails } from "react-icons/fc";
 import Modal from './Modal.jsx'
 import ModalComponent from "./ModalComponent.jsx";
 
-function ListingCard({ img, Title, Address, rooms,city, price,Description }) {
+function ListingCard({propertyNo, img, Address, rooms,city, price, postal }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
     setIsOpen(false);
@@ -21,11 +21,11 @@ function ListingCard({ img, Title, Address, rooms,city, price,Description }) {
         />
       </div>
       <div className="flex flex-col gap-4 p-6">
-        <div className="text-lg font-semibold">{Title}</div>
+        {/* <div className="text-lg font-semibold">{Title}</div> */}
         <div className="flex justify-between w-full flex-wrap gap-3">
           <div className="flex items-center gap-2">
             <HiOutlineArrowsExpand />
-            <div className="text-xs whitespace-nowrap">{Address},{city}</div>
+            <div className="text-xs whitespace-nowrap">{Address},{city},{postal}</div>
           </div>
     
           <div className="flex items-center gap-2">
@@ -41,7 +41,7 @@ function ListingCard({ img, Title, Address, rooms,city, price,Description }) {
             <div className="text-slate-600">Details</div>
           </button>
           <Modal isOpen={isOpen} handleClose={handleClose}>
-            <ModalComponent img={img} title={Title} Address={Address} room={rooms} city={city} price={price} Description={Description} />
+            <ModalComponent propertyNo={propertyNo} img={img} Address={Address} room={rooms} city={city} price={price}/>
           </Modal>
         </div>
       </div>
