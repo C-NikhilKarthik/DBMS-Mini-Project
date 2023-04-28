@@ -63,6 +63,12 @@ const Dropdown = () => {
           >
             Advertisement 
           </Link>
+          <Link
+            to="/status/leaseform"
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+          >
+            Lease Form 
+          </Link>
         </div>
       )}
     </div>
